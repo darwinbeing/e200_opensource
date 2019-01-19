@@ -17,14 +17,14 @@ base_dir := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 
 # Install RTLs
-install: 
+install:
 	mkdir -p ${PWD}/install
 	cp ${PWD}/../rtl/${CORE} ${INSTALL_RTL} -rf
 	cp ${FPGA_DIR}/src/system.org ${INSTALL_RTL}/system.v -rf
 	sed -i 's/e200/${CORE}/g' ${INSTALL_RTL}/system.v
 	sed -i '1i\`define FPGA_SOURCE\'  ${INSTALL_RTL}/core/${CORE}_defines.v
 
-EXTRA_FPGA_VSRCS := 
+EXTRA_FPGA_VSRCS :=
 verilog := $(wildcard ${INSTALL_RTL}/*/*.v)
 verilog += $(wildcard ${INSTALL_RTL}/*.v)
 
@@ -42,11 +42,16 @@ bit : install
 
 
 .PHONY: setup
-setup: 
+setup:
 	BASEDIR=${base_dir} VSRCS="$(verilog)" EXTRA_VSRCS="$(EXTRA_FPGA_VSRCS)" $(MAKE) -C $(FPGA_DIR) setup
 
 
+upload: bit
+	@vivado -mode batch -source ${base_dir}/script/upload.tcl -nojournal -nolog
 
+## download an existing bitstream to external memory
+flash: mcs
+	@vivado -mode batch -source ${base_dir}/script/flash.tcl -nojournal -nolog
 
 
 # Clean
@@ -58,3 +63,5 @@ clean:
 	rm -rf vivado.*
 	rm -rf novas.*
 
+
+.EXPORT_ALL_VARIABLES:

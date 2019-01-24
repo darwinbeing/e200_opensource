@@ -53,6 +53,8 @@ upload: bit
 flash: mcs
 	@vivado -mode batch -source ${base_dir}/script/flash.tcl -nojournal -nolog
 
+debug: bit
+	@vivado -mode batch -source ${base_dir}/script/ila.tcl -nojournal -nolog
 
 # Clean
 .PHONY: clean

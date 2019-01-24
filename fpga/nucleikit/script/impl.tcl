@@ -51,3 +51,5 @@ report_high_fanout_nets -file [file join $rptdir fanout.txt] -timing -load_types
 report_drc -file [file join $rptdir drc.txt]
 report_io -file [file join $rptdir io.txt]
 report_clocks -file [file join $rptdir clocks.txt]
+
+close_project

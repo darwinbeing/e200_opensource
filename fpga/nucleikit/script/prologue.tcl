@@ -8,7 +8,11 @@ set ipdir [file join $wrkdir ip]
 
 set top {system}
 
-create_project -part $part_fpga -in_memory
+# create_project -part $part_fpga -in_memory
+# create_project $top -part $part_fpga
+create_project -name $top -force -part $part_fpga
+set_property top ${top} [current_fileset]
+
 set_property -dict [list \
   TARGET_LANGUAGE {Verilog} \
   SIMULATOR_LANGUAGE {Mixed} \

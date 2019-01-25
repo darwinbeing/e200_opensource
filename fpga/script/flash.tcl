@@ -16,6 +16,8 @@ puts "Current hardware server set to [get_hw_servers]"
 ## specify target FPGA
 ## manually
 #current_hw_target  [get_hw_targets */xilinx_tcf/Digilent/210249854623]
+# set_property PARAM.FREQUENCY 15000000 [get_hw_targets */xilinx_tcf/Digilent/210249854623]
+set_property PARAM.FREQUENCY 15000000 [lindex [get_hw_devices] 0]
 
 ## automatically
 open_hw_target

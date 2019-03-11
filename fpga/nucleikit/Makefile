@@ -29,8 +29,11 @@ mcs: $(mcs)
 
 .PHONY: setup
 setup:
-	VSRCS="$(VSRCS)" EXTRA_VSRCS="$(EXTRA_VSRCS)" $(VIVADO) $(VIVADOFLAGS_SETUP) -source script/init_setup.tcl 
+	VSRCS="$(VSRCS)" EXTRA_VSRCS="$(EXTRA_VSRCS)" $(VIVADO) $(VIVADOFLAGS_SETUP) -source script/init_setup.tcl
 
+.PHONY: sim
+sim: script/sim.tcl  script/init.tcl
+	VSRCS="$(VSRCS)" EXTRA_VSRCS="$(EXTRA_VSRCS)" $(VIVADO) $(VIVADOFLAGS) -source script/init.tcl -source script/sim.tcl
 
 .PHONY: clean
 clean::

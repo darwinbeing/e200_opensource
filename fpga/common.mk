@@ -25,6 +25,7 @@ install:
 	sed -i '1i\`define FPGA_SOURCE\'  ${INSTALL_RTL}/core/${CORE}_defines.v
 
 EXTRA_FPGA_VSRCS :=
+TB_FPGA_VSRCS := ${FPGA_DIR}/testbench/fpga_tb_top.v
 verilog := $(wildcard ${INSTALL_RTL}/*/*.v)
 verilog += $(wildcard ${INSTALL_RTL}/*.v)
 
@@ -55,6 +56,10 @@ flash: mcs
 
 debug: bit
 	@vivado -mode batch -source ${base_dir}/script/ila.tcl -nojournal -nolog
+
+.PHONY: sim
+sim:
+	BASEDIR=${base_dir} VSRCS="$(verilog)" EXTRA_VSRCS="$(TB_FPGA_VSRCS)" $(MAKE) -C $(FPGA_DIR) sim
 
 # Clean
 .PHONY: clean

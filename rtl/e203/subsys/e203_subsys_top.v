@@ -1,21 +1,21 @@
- /*                                                                      
- Copyright 2018 Nuclei System Technology, Inc.                
-                                                                         
- Licensed under the Apache License, Version 2.0 (the "License");         
- you may not use this file except in compliance with the License.        
- You may obtain a copy of the License at                                 
-                                                                         
-     http://www.apache.org/licenses/LICENSE-2.0                          
-                                                                         
-  Unless required by applicable law or agreed to in writing, software    
- distributed under the License is distributed on an "AS IS" BASIS,       
+ /*
+ Copyright 2018 Nuclei System Technology, Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and     
- limitations under the License.                                          
- */                                                                      
-                                                                         
-                                                                         
-                                                                         
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+
+
 //=====================================================================
 //
 // Designer   : Bob Hu
@@ -78,8 +78,8 @@ module e203_subsys_top(
   output io_pads_aon_pmu_padrst_o_ds,
 
 
-  input  [`E203_HART_ID_W-1:0] core_mhartid,  
-    
+  input  [`E203_HART_ID_W-1:0] core_mhartid,
+
   `ifdef E203_HAS_ITCM_EXTITF //{
   //////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////
@@ -87,8 +87,8 @@ module e203_subsys_top(
   //    * Bus cmd channel
   input                          ext2itcm_icb_cmd_valid,
   output                         ext2itcm_icb_cmd_ready,
-  input  [`E203_ITCM_ADDR_WIDTH-1:0]   ext2itcm_icb_cmd_addr, 
-  input                          ext2itcm_icb_cmd_read, 
+  input  [`E203_ITCM_ADDR_WIDTH-1:0]   ext2itcm_icb_cmd_addr,
+  input                          ext2itcm_icb_cmd_read,
   input  [`E203_XLEN-1:0]        ext2itcm_icb_cmd_wdata,
   input  [`E203_XLEN/8-1:0]      ext2itcm_icb_cmd_wmask,
   //
@@ -106,8 +106,8 @@ module e203_subsys_top(
   //    * Bus cmd channel
   input                          ext2dtcm_icb_cmd_valid,
   output                         ext2dtcm_icb_cmd_ready,
-  input  [`E203_DTCM_ADDR_WIDTH-1:0]   ext2dtcm_icb_cmd_addr, 
-  input                          ext2dtcm_icb_cmd_read, 
+  input  [`E203_DTCM_ADDR_WIDTH-1:0]   ext2dtcm_icb_cmd_addr,
+  input                          ext2dtcm_icb_cmd_read,
   input  [`E203_XLEN-1:0]        ext2dtcm_icb_cmd_wdata,
   input  [`E203_XLEN/8-1:0]      ext2dtcm_icb_cmd_wmask,
   //
@@ -118,7 +118,7 @@ module e203_subsys_top(
   output [`E203_XLEN-1:0]        ext2dtcm_icb_rsp_rdata,
   `endif//}
 
-  
+
   //////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////
   // The ICB Interface to Private Peripheral Interface
@@ -126,8 +126,8 @@ module e203_subsys_top(
   //    * Bus cmd channel
   output                         sysper_icb_cmd_valid,
   input                          sysper_icb_cmd_ready,
-  output [`E203_ADDR_SIZE-1:0]   sysper_icb_cmd_addr, 
-  output                         sysper_icb_cmd_read, 
+  output [`E203_ADDR_SIZE-1:0]   sysper_icb_cmd_addr,
+  output                         sysper_icb_cmd_read,
   output [`E203_XLEN-1:0]        sysper_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      sysper_icb_cmd_wmask,
   //
@@ -145,8 +145,8 @@ module e203_subsys_top(
   //    * Bus cmd channel
   output                         sysfio_icb_cmd_valid,
   input                          sysfio_icb_cmd_ready,
-  output [`E203_ADDR_SIZE-1:0]   sysfio_icb_cmd_addr, 
-  output                         sysfio_icb_cmd_read, 
+  output [`E203_ADDR_SIZE-1:0]   sysfio_icb_cmd_addr,
+  output                         sysfio_icb_cmd_read,
   output [`E203_XLEN-1:0]        sysfio_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      sysfio_icb_cmd_wmask,
   //
@@ -160,13 +160,13 @@ module e203_subsys_top(
   `ifdef E203_HAS_MEM_ITF //{
   //////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////
-  // The ICB Interface from Ifetch 
+  // The ICB Interface from Ifetch
   //
   //    * Bus cmd channel
   output                         sysmem_icb_cmd_valid,
   input                          sysmem_icb_cmd_ready,
-  output [`E203_ADDR_SIZE-1:0]   sysmem_icb_cmd_addr, 
-  output                         sysmem_icb_cmd_read, 
+  output [`E203_ADDR_SIZE-1:0]   sysmem_icb_cmd_addr,
+  output                         sysmem_icb_cmd_read,
   output [`E203_XLEN-1:0]        sysmem_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      sysmem_icb_cmd_wmask,
   //
@@ -439,10 +439,10 @@ module e203_subsys_top(
   output  io_pads_jtag_TRST_n_o_ds,
 
   input  test_iso_override,
-  input  test_mode 
+  input  test_mode
   );
 
-  wire hfclk;// The PLL generated high-speed clock 
+  wire hfclk;// The PLL generated high-speed clock
   wire hfclkrst;// The reset signal to disable PLL
   wire corerst;
 
@@ -475,10 +475,10 @@ module e203_subsys_top(
   wire  dbg_ebreakm_r;
   wire  dbg_stopcycle;
 
-  wire  inspect_mode; 
-  wire  inspect_por_rst; 
-  wire  inspect_32k_clk; 
-  wire  inspect_pc_29b; 
+  wire  inspect_mode;
+  wire  inspect_por_rst;
+  wire  inspect_32k_clk;
+  wire  inspect_pc_29b;
   wire  inspect_dbg_irq;
   wire  inspect_jtag_clk;
   wire  core_csr_clk;
@@ -486,8 +486,8 @@ module e203_subsys_top(
 
   wire                          dm_icb_cmd_valid;
   wire                          dm_icb_cmd_ready;
-  wire  [`E203_ADDR_SIZE-1:0]   dm_icb_cmd_addr; 
-  wire                          dm_icb_cmd_read; 
+  wire  [`E203_ADDR_SIZE-1:0]   dm_icb_cmd_addr;
+  wire                          dm_icb_cmd_read;
   wire  [`E203_XLEN-1:0]        dm_icb_cmd_wdata;
   //
   wire                          dm_icb_rsp_valid;
@@ -500,8 +500,8 @@ module e203_subsys_top(
 
   wire                          aon_icb_cmd_valid;
   wire                          aon_icb_cmd_ready;
-  wire  [`E203_ADDR_SIZE-1:0]   aon_icb_cmd_addr; 
-  wire                          aon_icb_cmd_read; 
+  wire  [`E203_ADDR_SIZE-1:0]   aon_icb_cmd_addr;
+  wire                          aon_icb_cmd_read;
   wire  [`E203_XLEN-1:0]        aon_icb_cmd_wdata;
   //
   wire                          aon_icb_rsp_valid;
@@ -510,17 +510,17 @@ module e203_subsys_top(
 
 
 
-  wire  [`E203_PC_SIZE-1:0] pc_rtvec;
+  (* keep = "true" *) wire  [`E203_PC_SIZE-1:0] pc_rtvec;
 
 
 
   e203_subsys_main  u_e203_subsys_main(
     .pc_rtvec        (pc_rtvec),
 
-    .inspect_mode    (inspect_mode    ), 
-    .inspect_por_rst (inspect_por_rst), 
-    .inspect_32k_clk (inspect_32k_clk), 
-    .inspect_pc_29b  (inspect_pc_29b  ), 
+    .inspect_mode    (inspect_mode    ),
+    .inspect_por_rst (inspect_por_rst),
+    .inspect_32k_clk (inspect_32k_clk),
+    .inspect_pc_29b  (inspect_pc_29b  ),
     .inspect_dbg_irq (inspect_dbg_irq ),
     .inspect_jtag_clk(inspect_jtag_clk),
     .core_csr_clk    (core_csr_clk    ),
@@ -539,9 +539,9 @@ module e203_subsys_top(
     .wr_dcsr_ena     (wr_dcsr_ena    ),
     .wr_dpc_ena      (wr_dpc_ena     ),
     .wr_dscratch_ena (wr_dscratch_ena),
-                                     
+
     .wr_csr_nxt      (wr_csr_nxt     ),
-                                     
+
 
 
     .dcsr_r          (dcsr_r         ),
@@ -555,19 +555,19 @@ module e203_subsys_top(
     .dbg_stopcycle   (dbg_stopcycle),
 
 
-    .core_mhartid            (core_mhartid),  
+    .core_mhartid            (core_mhartid),
     .dbg_irq_a               (dbg_irq[0]),
-    
-    .aon_wdg_irq_a           (aon_wdg_irq_a     ),      
+
+    .aon_wdg_irq_a           (aon_wdg_irq_a     ),
     .aon_rtc_irq_a           (aon_rtc_irq_a     ),
     .aon_rtcToggle_a         (aon_rtcToggle_a   ),
-                             
+
     .aon_icb_cmd_valid       (aon_icb_cmd_valid ),
     .aon_icb_cmd_ready       (aon_icb_cmd_ready ),
     .aon_icb_cmd_addr        (aon_icb_cmd_addr  ),
     .aon_icb_cmd_read        (aon_icb_cmd_read  ),
     .aon_icb_cmd_wdata       (aon_icb_cmd_wdata ),
-                            
+
     .aon_icb_rsp_valid       (aon_icb_rsp_valid ),
     .aon_icb_rsp_ready       (aon_icb_rsp_ready ),
     .aon_icb_rsp_err         (1'b0   ),
@@ -578,7 +578,7 @@ module e203_subsys_top(
     .dm_icb_cmd_addr          (dm_icb_cmd_addr ),
     .dm_icb_cmd_read          (dm_icb_cmd_read ),
     .dm_icb_cmd_wdata         (dm_icb_cmd_wdata),
-    
+
     .dm_icb_rsp_valid         (dm_icb_rsp_valid),
     .dm_icb_rsp_ready         (dm_icb_rsp_ready),
     .dm_icb_rsp_rdata         (dm_icb_rsp_rdata),
@@ -820,7 +820,7 @@ module e203_subsys_top(
     .ext2itcm_icb_cmd_read   (ext2itcm_icb_cmd_read ),
     .ext2itcm_icb_cmd_wdata  (ext2itcm_icb_cmd_wdata),
     .ext2itcm_icb_cmd_wmask  (ext2itcm_icb_cmd_wmask),
-    
+
     .ext2itcm_icb_rsp_valid  (ext2itcm_icb_rsp_valid),
     .ext2itcm_icb_rsp_ready  (ext2itcm_icb_rsp_ready),
     .ext2itcm_icb_rsp_err    (ext2itcm_icb_rsp_err  ),
@@ -834,7 +834,7 @@ module e203_subsys_top(
     .ext2dtcm_icb_cmd_read   (ext2dtcm_icb_cmd_read ),
     .ext2dtcm_icb_cmd_wdata  (ext2dtcm_icb_cmd_wdata),
     .ext2dtcm_icb_cmd_wmask  (ext2dtcm_icb_cmd_wmask),
-    
+
     .ext2dtcm_icb_rsp_valid  (ext2dtcm_icb_rsp_valid),
     .ext2dtcm_icb_rsp_ready  (ext2dtcm_icb_rsp_ready),
     .ext2dtcm_icb_rsp_err    (ext2dtcm_icb_rsp_err  ),
@@ -848,7 +848,7 @@ module e203_subsys_top(
     .sysper_icb_cmd_read      (sysper_icb_cmd_read ),
     .sysper_icb_cmd_wdata     (sysper_icb_cmd_wdata),
     .sysper_icb_cmd_wmask     (sysper_icb_cmd_wmask),
-    
+
     .sysper_icb_rsp_valid     (sysper_icb_rsp_valid),
     .sysper_icb_rsp_ready     (sysper_icb_rsp_ready),
     .sysper_icb_rsp_err       (sysper_icb_rsp_err  ),
@@ -860,7 +860,7 @@ module e203_subsys_top(
     .sysfio_icb_cmd_read      (sysfio_icb_cmd_read ),
     .sysfio_icb_cmd_wdata     (sysfio_icb_cmd_wdata),
     .sysfio_icb_cmd_wmask     (sysfio_icb_cmd_wmask),
-    
+
     .sysfio_icb_rsp_valid     (sysfio_icb_rsp_valid),
     .sysfio_icb_rsp_ready     (sysfio_icb_rsp_ready),
     .sysfio_icb_rsp_err       (sysfio_icb_rsp_err  ),
@@ -874,13 +874,13 @@ module e203_subsys_top(
     .sysmem_icb_cmd_read   (sysmem_icb_cmd_read ),
     .sysmem_icb_cmd_wdata  (sysmem_icb_cmd_wdata),
     .sysmem_icb_cmd_wmask  (sysmem_icb_cmd_wmask),
-    
+
     .sysmem_icb_rsp_valid  (sysmem_icb_rsp_valid),
     .sysmem_icb_rsp_ready  (sysmem_icb_rsp_ready),
     .sysmem_icb_rsp_err    (sysmem_icb_rsp_err  ),
     .sysmem_icb_rsp_rdata  (sysmem_icb_rsp_rdata),
 
-    .test_mode     (test_mode), 
+    .test_mode     (test_mode),
     .hfclk           (hfclk   ),
     .hfclkrst        (hfclkrst),
     .corerst       (corerst)
@@ -897,7 +897,7 @@ module e203_subsys_top(
       .ASYNC_FF_LEVELS (`E203_ASYNC_FF_LEVELS),
       .HART_NUM (`E203_HART_NUM),
       .PC_SIZE  (`E203_PC_SIZE),
-      .HART_ID_W(`E203_HART_ID_W) 
+      .HART_ID_W(`E203_HART_ID_W)
     ) u_sirv_debug_module(
     .inspect_jtag_clk    (inspect_jtag_clk),
 
@@ -914,9 +914,9 @@ module e203_subsys_top(
     .wr_dcsr_ena     (wr_dcsr_ena    ),
     .wr_dpc_ena      (wr_dpc_ena     ),
     .wr_dscratch_ena (wr_dscratch_ena),
-                                     
+
     .wr_csr_nxt      (wr_csr_nxt     ),
-                                     
+
 
     .dcsr_r          (dcsr_r         ),
     .dpc_r           (dpc_r          ),
@@ -964,7 +964,7 @@ module e203_subsys_top(
     .i_icb_cmd_addr          (dm_icb_cmd_addr[11:0] ),
     .i_icb_cmd_read          (dm_icb_cmd_read ),
     .i_icb_cmd_wdata         (dm_icb_cmd_wdata),
-    
+
     .i_icb_rsp_valid         (dm_icb_rsp_valid),
     .i_icb_rsp_ready         (dm_icb_rsp_ready),
     .i_icb_rsp_rdata         (dm_icb_rsp_rdata),
@@ -974,7 +974,7 @@ module e203_subsys_top(
     .o_fullreset             (),
 
     .hfclk           (hfclk),
-    .corerst         (corerst) 
+    .corerst         (corerst)
   );
 
 
@@ -982,10 +982,10 @@ module e203_subsys_top(
     .pc_rtvec                (pc_rtvec),
 
     .jtagpwd_iso             (),// Currently not used
-    .inspect_mode            (inspect_mode     ), 
-    .inspect_pc_29b          (inspect_pc_29b   ), 
-    .inspect_por_rst         (inspect_por_rst  ), 
-    .inspect_32k_clk         (inspect_32k_clk  ), 
+    .inspect_mode            (inspect_mode     ),
+    .inspect_pc_29b          (inspect_pc_29b   ),
+    .inspect_por_rst         (inspect_por_rst  ),
+    .inspect_32k_clk         (inspect_32k_clk  ),
     .inspect_dbg_irq         (inspect_dbg_irq  ),
 
     .i_icb_cmd_valid         (aon_icb_cmd_valid),
@@ -993,12 +993,12 @@ module e203_subsys_top(
     .i_icb_cmd_addr          (aon_icb_cmd_addr ),
     .i_icb_cmd_read          (aon_icb_cmd_read ),
     .i_icb_cmd_wdata         (aon_icb_cmd_wdata),
-    
+
     .i_icb_rsp_valid         (aon_icb_rsp_valid),
     .i_icb_rsp_ready         (aon_icb_rsp_ready),
     .i_icb_rsp_rdata         (aon_icb_rsp_rdata),
 
-    .aon_wdg_irq             (aon_wdg_irq_a     ),      
+    .aon_wdg_irq             (aon_wdg_irq_a     ),
     .aon_rtc_irq             (aon_rtc_irq_a     ),
     .aon_rtcToggle           (aon_rtcToggle_a   ),
 
@@ -1008,7 +1008,7 @@ module e203_subsys_top(
     .lfextclk        (lfextclk),
     .lfxoscen        (lfxoscen),
 
-    .io_pads_aon_erst_n_i_ival        (io_pads_aon_erst_n_i_ival       ), 
+    .io_pads_aon_erst_n_i_ival        (io_pads_aon_erst_n_i_ival       ),
     .io_pads_aon_erst_n_o_oval        (io_pads_aon_erst_n_o_oval       ),
     .io_pads_aon_erst_n_o_oe          (io_pads_aon_erst_n_o_oe         ),
     .io_pads_aon_erst_n_o_ie          (io_pads_aon_erst_n_o_ie         ),

@@ -26,6 +26,8 @@ install:
 
 EXTRA_FPGA_VSRCS :=
 TB_FPGA_VSRCS := ${FPGA_DIR}/testbench/fpga_tb_top.v
+TB_FPGA_VSRCS += ${PWD}/model/W25Q32JV-M/W25Q32JVxxIM.v
+
 verilog := $(wildcard ${INSTALL_RTL}/*/*.v)
 verilog += $(wildcard ${INSTALL_RTL}/*.v)
 

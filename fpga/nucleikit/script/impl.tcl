@@ -2,7 +2,7 @@ set_param {messaging.defaultLimit} 1000000
 
 read_ip [glob -directory $ipdir [file join * {*.xci}]]
 
-synth_design -include_dirs ${wrkdir}/../../install/rtl/core/ -top $top -flatten_hierarchy rebuilt
+synth_design -include_dirs ${wrkdir}/../../install/rtl/core/ -top $top -flatten_hierarchy none
 write_checkpoint -force [file join $wrkdir post_synth]
 
 opt_design
@@ -51,3 +51,5 @@ report_high_fanout_nets -file [file join $rptdir fanout.txt] -timing -load_types
 report_drc -file [file join $rptdir drc.txt]
 report_io -file [file join $rptdir io.txt]
 report_clocks -file [file join $rptdir clocks.txt]
+
+write_schematic -format pdf -orientation portrait -force [file join $wrkdir "${top}_sch.pdf"]

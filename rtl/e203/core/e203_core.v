@@ -1,21 +1,21 @@
- /*                                                                      
- Copyright 2018 Nuclei System Technology, Inc.                
-                                                                         
- Licensed under the Apache License, Version 2.0 (the "License");         
- you may not use this file except in compliance with the License.        
- You may obtain a copy of the License at                                 
-                                                                         
-     http://www.apache.org/licenses/LICENSE-2.0                          
-                                                                         
-  Unless required by applicable law or agreed to in writing, software    
- distributed under the License is distributed on an "AS IS" BASIS,       
+ /*
+ Copyright 2018 Nuclei System Technology, Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and     
- limitations under the License.                                          
- */                                                                      
-                                                                         
-                                                                         
-                                                                         
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+
+
 //=====================================================================
 //
 // Designer   : Bob Hu
@@ -92,14 +92,14 @@ module e203_core(
   input  ifu2itcm_icb_cmd_ready, // Handshake ready
             // Note: The data on rdata or wdata channel must be naturally
             //       aligned, this is in line with the AXI definition
-  output [`E203_ITCM_ADDR_WIDTH-1:0]   ifu2itcm_icb_cmd_addr, // Bus transaction start addr 
+  output [`E203_ITCM_ADDR_WIDTH-1:0]   ifu2itcm_icb_cmd_addr, // Bus transaction start addr
 
   //    * Bus RSP channel
-  input  ifu2itcm_icb_rsp_valid, // Response valid 
+  input  ifu2itcm_icb_rsp_valid, // Response valid
   output ifu2itcm_icb_rsp_ready, // Response ready
   input  ifu2itcm_icb_rsp_err,   // Response error
             // Note: the RSP rdata is inline with AXI definition
-  input  [`E203_ITCM_DATA_WIDTH-1:0] ifu2itcm_icb_rsp_rdata, 
+  input  [`E203_ITCM_DATA_WIDTH-1:0] ifu2itcm_icb_rsp_rdata,
   `endif//}
 
 
@@ -112,8 +112,8 @@ module e203_core(
   //    * Bus cmd channel
   output                         ppi_icb_cmd_valid,
   input                          ppi_icb_cmd_ready,
-  output [`E203_ADDR_SIZE-1:0]   ppi_icb_cmd_addr, 
-  output                         ppi_icb_cmd_read, 
+  output [`E203_ADDR_SIZE-1:0]   ppi_icb_cmd_addr,
+  output                         ppi_icb_cmd_read,
   output [`E203_XLEN-1:0]        ppi_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      ppi_icb_cmd_wmask,
   output                         ppi_icb_cmd_lock,
@@ -127,14 +127,14 @@ module e203_core(
   input                          ppi_icb_rsp_excl_ok  ,
   input  [`E203_XLEN-1:0]        ppi_icb_rsp_rdata,
 
-  
+
   input [`E203_ADDR_SIZE-1:0]    clint_region_indic,
   input                          clint_icb_enable,
 
   output                         clint_icb_cmd_valid,
   input                          clint_icb_cmd_ready,
-  output [`E203_ADDR_SIZE-1:0]   clint_icb_cmd_addr, 
-  output                         clint_icb_cmd_read, 
+  output [`E203_ADDR_SIZE-1:0]   clint_icb_cmd_addr,
+  output                         clint_icb_cmd_read,
   output [`E203_XLEN-1:0]        clint_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      clint_icb_cmd_wmask,
   output                         clint_icb_cmd_lock,
@@ -153,8 +153,8 @@ module e203_core(
 
   output                         plic_icb_cmd_valid,
   input                          plic_icb_cmd_ready,
-  output [`E203_ADDR_SIZE-1:0]   plic_icb_cmd_addr, 
-  output                         plic_icb_cmd_read, 
+  output [`E203_ADDR_SIZE-1:0]   plic_icb_cmd_addr,
+  output                         plic_icb_cmd_read,
   output [`E203_XLEN-1:0]        plic_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      plic_icb_cmd_wmask,
   output                         plic_icb_cmd_lock,
@@ -179,8 +179,8 @@ module e203_core(
   //    * Bus cmd channel
   output                         fio_icb_cmd_valid,
   input                          fio_icb_cmd_ready,
-  output [`E203_ADDR_SIZE-1:0]   fio_icb_cmd_addr, 
-  output                         fio_icb_cmd_read, 
+  output [`E203_ADDR_SIZE-1:0]   fio_icb_cmd_addr,
+  output                         fio_icb_cmd_read,
   output [`E203_XLEN-1:0]        fio_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      fio_icb_cmd_wmask,
   output                         fio_icb_cmd_lock,
@@ -198,14 +198,14 @@ module e203_core(
   `ifdef E203_HAS_MEM_ITF //{
   //////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////
-  // The ICB Interface from Ifetch 
+  // The ICB Interface from Ifetch
   //
   input                          mem_icb_enable,
   //    * Bus cmd channel
   output                         mem_icb_cmd_valid,
   input                          mem_icb_cmd_ready,
-  output [`E203_ADDR_SIZE-1:0]   mem_icb_cmd_addr, 
-  output                         mem_icb_cmd_read, 
+  output [`E203_ADDR_SIZE-1:0]   mem_icb_cmd_addr,
+  output                         mem_icb_cmd_read,
   output [`E203_XLEN-1:0]        mem_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      mem_icb_cmd_wmask,
   output                         mem_icb_cmd_lock,
@@ -230,8 +230,8 @@ module e203_core(
   //    * Bus cmd channel
   output                         lsu2itcm_icb_cmd_valid,
   input                          lsu2itcm_icb_cmd_ready,
-  output [`E203_ITCM_ADDR_WIDTH-1:0]   lsu2itcm_icb_cmd_addr, 
-  output                         lsu2itcm_icb_cmd_read, 
+  output [`E203_ITCM_ADDR_WIDTH-1:0]   lsu2itcm_icb_cmd_addr,
+  output                         lsu2itcm_icb_cmd_read,
   output [`E203_XLEN-1:0]        lsu2itcm_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      lsu2itcm_icb_cmd_wmask,
   output                         lsu2itcm_icb_cmd_lock,
@@ -255,8 +255,8 @@ module e203_core(
   //    * Bus cmd channel
   output                         lsu2dtcm_icb_cmd_valid,
   input                          lsu2dtcm_icb_cmd_ready,
-  output [`E203_DTCM_ADDR_WIDTH-1:0]   lsu2dtcm_icb_cmd_addr, 
-  output                         lsu2dtcm_icb_cmd_read, 
+  output [`E203_DTCM_ADDR_WIDTH-1:0]   lsu2dtcm_icb_cmd_addr,
+  output                         lsu2dtcm_icb_cmd_read,
   output [`E203_XLEN-1:0]        lsu2dtcm_icb_cmd_wdata,
   output [`E203_XLEN/8-1:0]      lsu2dtcm_icb_cmd_wmask,
   output                         lsu2dtcm_icb_cmd_lock,
@@ -287,15 +287,15 @@ module e203_core(
   );
 
     `ifdef E203_HAS_MEM_ITF //{
-  wire                         ifu2biu_icb_cmd_valid;
-  wire                         ifu2biu_icb_cmd_ready;
-  wire [`E203_ADDR_SIZE-1:0]   ifu2biu_icb_cmd_addr; 
-  wire                         ifu2biu_icb_rsp_valid;
-  wire                         ifu2biu_icb_rsp_ready;
-  wire                         ifu2biu_icb_rsp_err  ;
-  wire                         ifu2biu_icb_rsp_excl_ok;
-  wire [`E203_XLEN-1:0]        ifu2biu_icb_rsp_rdata;
-   
+  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_cmd_valid;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_cmd_ready;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [`E203_ADDR_SIZE-1:0]   ifu2biu_icb_cmd_addr;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_rsp_valid;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_rsp_ready;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_rsp_err  ;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_rsp_excl_ok;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [`E203_XLEN-1:0]        ifu2biu_icb_rsp_rdata;
+
   `endif//}
 
 
@@ -305,9 +305,9 @@ module e203_core(
   wire ifu_o_ready;
   wire [`E203_INSTR_SIZE-1:0] ifu_o_ir;
   wire [`E203_PC_SIZE-1:0] ifu_o_pc;
-  wire ifu_o_pc_vld; 
-  wire ifu_o_misalgn; 
-  wire ifu_o_buserr; 
+  wire ifu_o_pc_vld;
+  wire ifu_o_misalgn;
+  wire ifu_o_buserr;
   wire [`E203_RFIDX_WIDTH-1:0] ifu_o_rs1idx;
   wire [`E203_RFIDX_WIDTH-1:0] ifu_o_rs2idx;
   wire ifu_o_prdt_taken;
@@ -317,10 +317,10 @@ module e203_core(
   wire wfi_halt_ifu_ack;
   wire pipe_flush_ack;
   wire pipe_flush_req;
-  wire [`E203_PC_SIZE-1:0] pipe_flush_add_op1;  
-  wire [`E203_PC_SIZE-1:0] pipe_flush_add_op2;  
+  wire [`E203_PC_SIZE-1:0] pipe_flush_add_op1;
+  wire [`E203_PC_SIZE-1:0] pipe_flush_add_op2;
   `ifdef E203_TIMING_BOOST//}
-  wire [`E203_PC_SIZE-1:0] pipe_flush_pc;  
+  wire [`E203_PC_SIZE-1:0] pipe_flush_pc;
   `endif//}
 
   wire oitf_empty;
@@ -342,7 +342,7 @@ module e203_core(
     .inspect_pc   (inspect_pc),
 
     .ifu_active      (ifu_active),
-    .pc_rtvec        (pc_rtvec),  
+    .pc_rtvec        (pc_rtvec),
 
     .itcm_nohold     (itcm_nohold),
 
@@ -366,7 +366,7 @@ module e203_core(
     .ifu2biu_icb_cmd_valid  (ifu2biu_icb_cmd_valid),
     .ifu2biu_icb_cmd_ready  (ifu2biu_icb_cmd_ready),
     .ifu2biu_icb_cmd_addr   (ifu2biu_icb_cmd_addr ),
-    
+
     .ifu2biu_icb_rsp_valid  (ifu2biu_icb_rsp_valid),
     .ifu2biu_icb_rsp_ready  (ifu2biu_icb_rsp_ready),
     .ifu2biu_icb_rsp_err    (ifu2biu_icb_rsp_err  ),
@@ -380,8 +380,8 @@ module e203_core(
     .ifu_o_ir               (ifu_o_ir            ),
     .ifu_o_pc               (ifu_o_pc            ),
     .ifu_o_pc_vld           (ifu_o_pc_vld        ),
-    .ifu_o_misalgn          (ifu_o_misalgn       ), 
-    .ifu_o_buserr           (ifu_o_buserr        ), 
+    .ifu_o_misalgn          (ifu_o_misalgn       ),
+    .ifu_o_buserr           (ifu_o_buserr        ),
     .ifu_o_rs1idx           (ifu_o_rs1idx        ),
     .ifu_o_rs2idx           (ifu_o_rs2idx        ),
     .ifu_o_prdt_taken       (ifu_o_prdt_taken    ),
@@ -391,13 +391,13 @@ module e203_core(
     .ifu_halt_ack           (wfi_halt_ifu_ack),
     .pipe_flush_ack         (pipe_flush_ack      ),
     .pipe_flush_req         (pipe_flush_req      ),
-    .pipe_flush_add_op1     (pipe_flush_add_op1  ),  
-    .pipe_flush_add_op2     (pipe_flush_add_op2  ),  
+    .pipe_flush_add_op1     (pipe_flush_add_op1  ),
+    .pipe_flush_add_op2     (pipe_flush_add_op2  ),
   `ifdef E203_TIMING_BOOST//}
-    .pipe_flush_pc          (pipe_flush_pc),  
+    .pipe_flush_pc          (pipe_flush_pc),
   `endif//}
 
-                                 
+
     .oitf_empty             (oitf_empty   ),
     .rf2ifu_x1              (rf2ifu_x1    ),
     .rf2ifu_rs1             (rf2ifu_rs1   ),
@@ -411,37 +411,37 @@ module e203_core(
     .dec2ifu_remu           (dec2ifu_remu  ),
 
     .clk                    (clk_core_ifu  ),
-    .rst_n                  (rst_n         ) 
+    .rst_n                  (rst_n         )
   );
 
-  
 
-  wire                         lsu_o_valid; 
-  wire                         lsu_o_ready; 
+
+  wire                         lsu_o_valid;
+  wire                         lsu_o_ready;
   wire [`E203_XLEN-1:0]        lsu_o_wbck_wdat;
   wire [`E203_ITAG_WIDTH -1:0] lsu_o_wbck_itag;
-  wire                         lsu_o_wbck_err ; 
-  wire                         lsu_o_cmt_buserr ; 
+  wire                         lsu_o_wbck_err ;
+  wire                         lsu_o_cmt_buserr ;
   wire                         lsu_o_cmt_ld;
   wire                         lsu_o_cmt_st;
   wire [`E203_ADDR_SIZE -1:0]  lsu_o_cmt_badaddr;
 
-  wire                         agu_icb_cmd_valid; 
-  wire                         agu_icb_cmd_ready; 
-  wire [`E203_ADDR_SIZE-1:0]   agu_icb_cmd_addr; 
-  wire                         agu_icb_cmd_read;   
-  wire [`E203_XLEN-1:0]        agu_icb_cmd_wdata; 
-  wire [`E203_XLEN/8-1:0]      agu_icb_cmd_wmask; 
+  wire                         agu_icb_cmd_valid;
+  wire                         agu_icb_cmd_ready;
+  wire [`E203_ADDR_SIZE-1:0]   agu_icb_cmd_addr;
+  wire                         agu_icb_cmd_read;
+  wire [`E203_XLEN-1:0]        agu_icb_cmd_wdata;
+  wire [`E203_XLEN/8-1:0]      agu_icb_cmd_wmask;
   wire                         agu_icb_cmd_lock;
   wire                         agu_icb_cmd_excl;
   wire [1:0]                   agu_icb_cmd_size;
-  wire                         agu_icb_cmd_back2agu; 
+  wire                         agu_icb_cmd_back2agu;
   wire                         agu_icb_cmd_usign;
   wire [`E203_ITAG_WIDTH -1:0] agu_icb_cmd_itag;
-  wire                         agu_icb_rsp_valid; 
-  wire                         agu_icb_rsp_ready; 
-  wire                         agu_icb_rsp_err  ; 
-  wire                         agu_icb_rsp_excl_ok  ; 
+  wire                         agu_icb_rsp_valid;
+  wire                         agu_icb_rsp_ready;
+  wire                         agu_icb_rsp_err  ;
+  wire                         agu_icb_rsp_excl_ok  ;
   wire [`E203_XLEN-1:0]        agu_icb_rsp_rdata;
 
   wire commit_mret;
@@ -489,9 +489,9 @@ module e203_core(
     .wr_dscratch_ena (wr_dscratch_ena),
 
 
-                                     
+
     .wr_csr_nxt      (wr_csr_nxt    ),
-                                     
+
     .dcsr_r          (dcsr_r         ),
     .dpc_r           (dpc_r          ),
     .dscratch_r      (dscratch_r     ),
@@ -507,8 +507,8 @@ module e203_core(
     .i_ir                   (ifu_o_ir            ),
     .i_pc                   (ifu_o_pc            ),
     .i_pc_vld               (ifu_o_pc_vld        ),
-    .i_misalgn              (ifu_o_misalgn       ), 
-    .i_buserr               (ifu_o_buserr        ), 
+    .i_misalgn              (ifu_o_misalgn       ),
+    .i_buserr               (ifu_o_buserr        ),
     .i_rs1idx               (ifu_o_rs1idx        ),
     .i_rs2idx               (ifu_o_rs2idx        ),
     .i_prdt_taken           (ifu_o_prdt_taken    ),
@@ -519,10 +519,10 @@ module e203_core(
 
     .pipe_flush_ack         (pipe_flush_ack      ),
     .pipe_flush_req         (pipe_flush_req      ),
-    .pipe_flush_add_op1     (pipe_flush_add_op1  ),  
-    .pipe_flush_add_op2     (pipe_flush_add_op2  ),  
+    .pipe_flush_add_op1     (pipe_flush_add_op1  ),
+    .pipe_flush_add_op2     (pipe_flush_add_op2  ),
   `ifdef E203_TIMING_BOOST//}
-    .pipe_flush_pc          (pipe_flush_pc),  
+    .pipe_flush_pc          (pipe_flush_pc),
   `endif//}
 
     .lsu_o_valid            (lsu_o_valid   ),
@@ -568,13 +568,13 @@ module e203_core(
 
     .clk_aon                (clk_aon),
     .clk                    (clk_core_exu),
-    .rst_n                  (rst_n  ) 
+    .rst_n                  (rst_n  )
   );
 
   wire                         lsu2biu_icb_cmd_valid;
   wire                         lsu2biu_icb_cmd_ready;
-  wire [`E203_ADDR_SIZE-1:0]   lsu2biu_icb_cmd_addr; 
-  wire                         lsu2biu_icb_cmd_read; 
+  wire [`E203_ADDR_SIZE-1:0]   lsu2biu_icb_cmd_addr;
+  wire                         lsu2biu_icb_cmd_read;
   wire [`E203_XLEN-1:0]        lsu2biu_icb_cmd_wdata;
   wire [`E203_XLEN/8-1:0]      lsu2biu_icb_cmd_wmask;
   wire                         lsu2biu_icb_cmd_lock;
@@ -601,7 +601,7 @@ module e203_core(
     .lsu_o_cmt_ld        (lsu_o_cmt_ld),
     .lsu_o_cmt_st        (lsu_o_cmt_st),
     .lsu_o_cmt_badaddr   (lsu_o_cmt_badaddr     ),
-                        
+
     .agu_icb_cmd_valid   (agu_icb_cmd_valid ),
     .agu_icb_cmd_ready   (agu_icb_cmd_ready ),
     .agu_icb_cmd_addr    (agu_icb_cmd_addr  ),
@@ -611,11 +611,11 @@ module e203_core(
     .agu_icb_cmd_lock    (agu_icb_cmd_lock  ),
     .agu_icb_cmd_excl    (agu_icb_cmd_excl  ),
     .agu_icb_cmd_size    (agu_icb_cmd_size  ),
-   
+
     .agu_icb_cmd_back2agu(agu_icb_cmd_back2agu ),
     .agu_icb_cmd_usign   (agu_icb_cmd_usign),
     .agu_icb_cmd_itag    (agu_icb_cmd_itag),
-  
+
     .agu_icb_rsp_valid   (agu_icb_rsp_valid ),
     .agu_icb_rsp_ready   (agu_icb_rsp_ready ),
     .agu_icb_rsp_err     (agu_icb_rsp_err   ),
@@ -635,7 +635,7 @@ module e203_core(
     .itcm_icb_cmd_lock   (lsu2itcm_icb_cmd_lock ),
     .itcm_icb_cmd_excl   (lsu2itcm_icb_cmd_excl ),
     .itcm_icb_cmd_size   (lsu2itcm_icb_cmd_size ),
-     
+
     .itcm_icb_rsp_valid  (lsu2itcm_icb_rsp_valid),
     .itcm_icb_rsp_ready  (lsu2itcm_icb_rsp_ready),
     .itcm_icb_rsp_err    (lsu2itcm_icb_rsp_err  ),
@@ -656,7 +656,7 @@ module e203_core(
     .dtcm_icb_cmd_lock   (lsu2dtcm_icb_cmd_lock ),
     .dtcm_icb_cmd_excl   (lsu2dtcm_icb_cmd_excl ),
     .dtcm_icb_cmd_size   (lsu2dtcm_icb_cmd_size ),
-     
+
     .dtcm_icb_rsp_valid  (lsu2dtcm_icb_rsp_valid),
     .dtcm_icb_rsp_ready  (lsu2dtcm_icb_rsp_ready),
     .dtcm_icb_rsp_err    (lsu2dtcm_icb_rsp_err  ),
@@ -674,7 +674,7 @@ module e203_core(
     .biu_icb_cmd_lock   (lsu2biu_icb_cmd_lock ),
     .biu_icb_cmd_excl   (lsu2biu_icb_cmd_excl ),
     .biu_icb_cmd_size   (lsu2biu_icb_cmd_size ),
-    
+
     .biu_icb_rsp_valid  (lsu2biu_icb_rsp_valid),
     .biu_icb_rsp_ready  (lsu2biu_icb_rsp_ready),
     .biu_icb_rsp_err    (lsu2biu_icb_rsp_err  ),
@@ -682,7 +682,7 @@ module e203_core(
     .biu_icb_rsp_rdata  (lsu2biu_icb_rsp_rdata),
 
     .clk           (clk_core_lsu ),
-    .rst_n         (rst_n        ) 
+    .rst_n         (rst_n        )
   );
 
 
@@ -721,7 +721,7 @@ module e203_core(
     .ifu2biu_icb_cmd_size   (2'b10),
     .ifu2biu_icb_cmd_burst  (2'b0),
     .ifu2biu_icb_cmd_beat   (2'b0),
-    
+
     .ifu2biu_icb_rsp_valid  (ifu2biu_icb_rsp_valid),
     .ifu2biu_icb_rsp_ready  (ifu2biu_icb_rsp_ready),
     .ifu2biu_icb_rsp_err    (ifu2biu_icb_rsp_err  ),
@@ -743,7 +743,7 @@ module e203_core(
     .ppi_icb_cmd_size      (ppi_icb_cmd_size ),
     .ppi_icb_cmd_burst     (),
     .ppi_icb_cmd_beat      (),
-    
+
     .ppi_icb_rsp_valid     (ppi_icb_rsp_valid),
     .ppi_icb_rsp_ready     (ppi_icb_rsp_ready),
     .ppi_icb_rsp_err       (ppi_icb_rsp_err  ),
@@ -764,7 +764,7 @@ module e203_core(
     .plic_icb_cmd_size      (plic_icb_cmd_size ),
     .plic_icb_cmd_burst     (),
     .plic_icb_cmd_beat      (),
-    
+
     .plic_icb_rsp_valid     (plic_icb_rsp_valid),
     .plic_icb_rsp_ready     (plic_icb_rsp_ready),
     .plic_icb_rsp_err       (plic_icb_rsp_err  ),
@@ -784,7 +784,7 @@ module e203_core(
     .clint_icb_cmd_size      (clint_icb_cmd_size ),
     .clint_icb_cmd_burst     (),
     .clint_icb_cmd_beat      (),
-    
+
     .clint_icb_rsp_valid     (clint_icb_rsp_valid),
     .clint_icb_rsp_ready     (clint_icb_rsp_ready),
     .clint_icb_rsp_err       (clint_icb_rsp_err  ),
@@ -806,7 +806,7 @@ module e203_core(
     .fio_icb_cmd_size      (fio_icb_cmd_size ),
     .fio_icb_cmd_burst     (),
     .fio_icb_cmd_beat      (),
-    
+
     .fio_icb_rsp_valid     (fio_icb_rsp_valid),
     .fio_icb_rsp_ready     (fio_icb_rsp_ready),
     .fio_icb_rsp_err       (fio_icb_rsp_err  ),
@@ -827,7 +827,7 @@ module e203_core(
     .mem_icb_cmd_size      (mem_icb_cmd_size ),
     .mem_icb_cmd_burst     (mem_icb_cmd_burst),
     .mem_icb_cmd_beat      (mem_icb_cmd_beat ),
-    
+
     .mem_icb_rsp_valid     (mem_icb_rsp_valid),
     .mem_icb_rsp_ready     (mem_icb_rsp_ready),
     .mem_icb_rsp_err       (mem_icb_rsp_err  ),
@@ -836,12 +836,9 @@ module e203_core(
   `endif//}
 
     .clk                    (clk_core_biu ),
-    .rst_n                  (rst_n        ) 
+    .rst_n                  (rst_n        )
   );
 
 
 
-endmodule                                      
-                                               
-                                               
-                                               
+endmodule

@@ -1395,15 +1395,15 @@ module e203_subsys_perips(
   wire                     pwm0_icb_rsp_ready;
   wire [32-1:0]            pwm0_icb_rsp_rdata;
 
-  wire                     uart1_icb_cmd_valid;
-  wire                     uart1_icb_cmd_ready;
-  wire [32-1:0]            uart1_icb_cmd_addr;
-  wire                     uart1_icb_cmd_read;
-  wire [32-1:0]            uart1_icb_cmd_wdata;
+  wire                     uart1_apb_icb_cmd_valid;
+  wire                     uart1_apb_icb_cmd_ready;
+  wire [32-1:0]            uart1_apb_icb_cmd_addr;
+  wire                     uart1_apb_icb_cmd_read;
+  wire [32-1:0]            uart1_apb_icb_cmd_wdata;
 
-  wire                     uart1_icb_rsp_valid;
-  wire                     uart1_icb_rsp_ready;
-  wire [32-1:0]            uart1_icb_rsp_rdata;
+  wire                     uart1_apb_icb_rsp_valid;
+  wire                     uart1_apb_icb_rsp_ready;
+  wire [32-1:0]            uart1_apb_icb_rsp_rdata;
 
   wire                     qspi1_icb_cmd_valid;
   wire                     qspi1_icb_cmd_ready;
@@ -1750,11 +1750,11 @@ module e203_subsys_perips(
   //  * UART1
     .o7_icb_enable     (1'b1),
 
-    .o7_icb_cmd_valid  (uart1_icb_cmd_valid),
-    .o7_icb_cmd_ready  (uart1_icb_cmd_ready),
-    .o7_icb_cmd_addr   (uart1_icb_cmd_addr ),
-    .o7_icb_cmd_read   (uart1_icb_cmd_read ),
-    .o7_icb_cmd_wdata  (uart1_icb_cmd_wdata),
+    .o7_icb_cmd_valid  (uart1_apb_icb_cmd_valid),
+    .o7_icb_cmd_ready  (uart1_apb_icb_cmd_ready),
+    .o7_icb_cmd_addr   (uart1_apb_icb_cmd_addr ),
+    .o7_icb_cmd_read   (uart1_apb_icb_cmd_read ),
+    .o7_icb_cmd_wdata  (uart1_apb_icb_cmd_wdata),
     .o7_icb_cmd_wmask  (),
     .o7_icb_cmd_lock   (),
     .o7_icb_cmd_excl   (),
@@ -1762,11 +1762,11 @@ module e203_subsys_perips(
     .o7_icb_cmd_burst  (),
     .o7_icb_cmd_beat   (),
 
-    .o7_icb_rsp_valid  (uart1_icb_rsp_valid),
-    .o7_icb_rsp_ready  (uart1_icb_rsp_ready),
+    .o7_icb_rsp_valid  (uart1_apb_icb_rsp_valid),
+    .o7_icb_rsp_ready  (uart1_apb_icb_rsp_ready),
     .o7_icb_rsp_err    (1'b0  ),
     .o7_icb_rsp_excl_ok(1'b0  ),
-    .o7_icb_rsp_rdata  (uart1_icb_rsp_rdata),
+    .o7_icb_rsp_rdata  (uart1_apb_icb_rsp_rdata),
 
 
   //  * QSPI1
@@ -2658,25 +2658,64 @@ sirv_pwm8_top u_sirv_pwm0_top(
 );
 
   //  * UART1
-sirv_uart_top u_sirv_uart1_top (
+  wire [`E203_ADDR_SIZE-1:0] uart1_apb_paddr;
+  wire uart1_apb_pwrite;
+  wire uart1_apb_pselx;
+  wire uart1_apb_penable;
+  wire [`E203_XLEN-1:0] uart1_apb_pwdata;
+  wire [`E203_XLEN-1:0] uart1_apb_prdata;
+
+sirv_gnrl_icb2apb # (
+  .AW   (32),
+  .DW   (`E203_XLEN)
+) u_uart1_apb_icb2apb(
+    .i_icb_cmd_valid (uart1_apb_icb_cmd_valid),
+    .i_icb_cmd_ready (uart1_apb_icb_cmd_ready),
+    .i_icb_cmd_addr  (uart1_apb_icb_cmd_addr ),
+    .i_icb_cmd_read  (uart1_apb_icb_cmd_read ),
+    .i_icb_cmd_wdata (uart1_apb_icb_cmd_wdata),
+    .i_icb_cmd_wmask (uart1_apb_icb_cmd_wmask),
+    .i_icb_cmd_size  (),
+
+    .i_icb_rsp_valid (uart1_apb_icb_rsp_valid),
+    .i_icb_rsp_ready (uart1_apb_icb_rsp_ready),
+    .i_icb_rsp_rdata (uart1_apb_icb_rsp_rdata),
+    .i_icb_rsp_err   (uart1_apb_icb_rsp_err),
+
+    .apb_paddr     (uart1_apb_paddr  ),
+    .apb_pwrite    (uart1_apb_pwrite ),
+    .apb_pselx     (uart1_apb_pselx  ),
+    .apb_penable   (uart1_apb_penable),
+    .apb_pwdata    (uart1_apb_pwdata ),
+    .apb_prdata    (uart1_apb_prdata ),
+
     .clk           (clk  ),
-    .rst_n         (rst_n),
+    .rst_n         (bus_rst_n)
+  );
 
-    .i_icb_cmd_valid (uart1_icb_cmd_valid),
-    .i_icb_cmd_ready (uart1_icb_cmd_ready),
-    .i_icb_cmd_addr  (uart1_icb_cmd_addr ),
-    .i_icb_cmd_read  (uart1_icb_cmd_read ),
-    .i_icb_cmd_wdata (uart1_icb_cmd_wdata),
-
-    .i_icb_rsp_valid (uart1_icb_rsp_valid),
-    .i_icb_rsp_ready (uart1_icb_rsp_ready),
-    .i_icb_rsp_rdata (uart1_icb_rsp_rdata),
-
-    .io_interrupts_0_0 (uart1_irq),
-    .io_port_txd       (uart1_txd),
-    .io_port_rxd       (uart1_rxd)
-);
-
+   apb_uart u_apb_uart (
+                        .CLK     ( clk ),
+                        .RSTN    ( rst_n ),
+                        .PSEL    ( uart1_apb_pselx ),
+                        .PENABLE ( uart1_apb_penable ),
+                        .PWRITE  ( uart1_apb_pwrite ),
+                        .PADDR   ( uart1_apb_paddr ),
+                        .PWDATA  ( uart1_apb_pwdata ),
+                        .PRDATA  ( uart1_apb_prdata ),
+                        .PREADY  (),
+                        .PSLVERR (),
+                        .INT     ( uart1_irq ),
+                        .OUT1N   (), // keep open
+                        .OUT2N   (), // keep open
+                        .RTSN    (), // no flow control
+                        .DTRN    (), // no flow control
+                        .CTSN    ( 1'b0 ),
+                        .DSRN    ( 1'b0 ),
+                        .DCDN    ( 1'b0 ),
+                        .RIN     ( 1'b0 ),
+                        .SIN     ( uart1_rxd ),
+                        .SOUT    ( uart1_txd )
+                        );
 
   //  * QSPI1
 sirv_qspi_4cs_top u_sirv_qspi1_top(

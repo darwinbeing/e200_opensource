@@ -287,14 +287,14 @@ module e203_core(
   );
 
     `ifdef E203_HAS_MEM_ITF //{
-  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_cmd_valid;
-  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_cmd_ready;
-  (* keep = "true" *)(* mark_debug = "true" *) wire [`E203_ADDR_SIZE-1:0]   ifu2biu_icb_cmd_addr;
-  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_rsp_valid;
-  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_rsp_ready;
-  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_rsp_err  ;
-  (* keep = "true" *)(* mark_debug = "true" *) wire                         ifu2biu_icb_rsp_excl_ok;
-  (* keep = "true" *)(* mark_debug = "true" *) wire [`E203_XLEN-1:0]        ifu2biu_icb_rsp_rdata;
+  wire                         ifu2biu_icb_cmd_valid;
+  wire                         ifu2biu_icb_cmd_ready;
+  wire [`E203_ADDR_SIZE-1:0]   ifu2biu_icb_cmd_addr;
+  wire                         ifu2biu_icb_rsp_valid;
+  wire                         ifu2biu_icb_rsp_ready;
+  wire                         ifu2biu_icb_rsp_err  ;
+  wire                         ifu2biu_icb_rsp_excl_ok;
+  wire [`E203_XLEN-1:0]        ifu2biu_icb_rsp_rdata;
 
   `endif//}
 

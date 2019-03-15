@@ -56,24 +56,24 @@ module e203_biu(
   // the icb interface from ifetch
   //
   //    * bus cmd channel
-  (* keep = "true" *)(* mark_debug = "true" *) input                          ifu2biu_icb_cmd_valid,
-  (* keep = "true" *)(* mark_debug = "true" *) output                         ifu2biu_icb_cmd_ready,
-  (* keep = "true" *)(* mark_debug = "true" *) input  [`E203_ADDR_SIZE-1:0]   ifu2biu_icb_cmd_addr,
-  (* keep = "true" *)(* mark_debug = "true" *) input                          ifu2biu_icb_cmd_read,
-  (* keep = "true" *)(* mark_debug = "true" *) input  [`E203_XLEN-1:0]        ifu2biu_icb_cmd_wdata,
-  (* keep = "true" *)(* mark_debug = "true" *) input  [`E203_XLEN/8-1:0]      ifu2biu_icb_cmd_wmask,
-  (* keep = "true" *)(* mark_debug = "true" *) input  [1:0]                   ifu2biu_icb_cmd_burst,
-  (* keep = "true" *)(* mark_debug = "true" *) input  [1:0]                   ifu2biu_icb_cmd_beat,
-  (* keep = "true" *)(* mark_debug = "true" *) input                          ifu2biu_icb_cmd_lock,
-  (* keep = "true" *)(* mark_debug = "true" *) input                          ifu2biu_icb_cmd_excl,
-  (* keep = "true" *)(* mark_debug = "true" *) input  [1:0]                   ifu2biu_icb_cmd_size,
+  input                          ifu2biu_icb_cmd_valid,
+  output                         ifu2biu_icb_cmd_ready,
+  input  [`E203_ADDR_SIZE-1:0]   ifu2biu_icb_cmd_addr,
+  input                          ifu2biu_icb_cmd_read,
+  input  [`E203_XLEN-1:0]        ifu2biu_icb_cmd_wdata,
+  input  [`E203_XLEN/8-1:0]      ifu2biu_icb_cmd_wmask,
+  input  [1:0]                   ifu2biu_icb_cmd_burst,
+  input  [1:0]                   ifu2biu_icb_cmd_beat,
+  input                          ifu2biu_icb_cmd_lock,
+  input                          ifu2biu_icb_cmd_excl,
+  input  [1:0]                   ifu2biu_icb_cmd_size,
   //
   //    * bus rsp channel
-  (* keep = "true" *)(* mark_debug = "true" *) output                         ifu2biu_icb_rsp_valid,
-  (* keep = "true" *)(* mark_debug = "true" *) input                          ifu2biu_icb_rsp_ready,
-  (* keep = "true" *)(* mark_debug = "true" *) output                         ifu2biu_icb_rsp_err  ,
-  (* keep = "true" *)(* mark_debug = "true" *) output                         ifu2biu_icb_rsp_excl_ok,
-  (* keep = "true" *)(* mark_debug = "true" *) output [`E203_XLEN-1:0]        ifu2biu_icb_rsp_rdata,
+  output                         ifu2biu_icb_rsp_valid,
+  input                          ifu2biu_icb_rsp_ready,
+  output                         ifu2biu_icb_rsp_err  ,
+  output                         ifu2biu_icb_rsp_excl_ok,
+  output [`E203_XLEN-1:0]        ifu2biu_icb_rsp_rdata,
 
   //output                         ifu2biu_replay,
   `endif//}

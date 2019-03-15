@@ -284,7 +284,7 @@ module system
   //=================================================
   // Clock & Reset
   wire clk_8388;
-  (* keep = "true" *) wire clk_16M;
+  (* keep = "true" *)(* mark_debug = "true" *) wire clk_16M;
   wire clk_50M;
 
 

@@ -56,16 +56,16 @@ module e203_subsys_mems(
   input  [`E203_XLEN-1:0]        sysmem_icb_rsp_rdata,
 
     //////////////////////////////////////////////////////////
-  (* keep = "true" *)(* mark_debug = "true" *) output                         qspi0_ro_icb_cmd_valid,
-  (* keep = "true" *)(* mark_debug = "true" *) input                          qspi0_ro_icb_cmd_ready,
-  (* keep = "true" *)(* mark_debug = "true" *) output [`E203_ADDR_SIZE-1:0]   qspi0_ro_icb_cmd_addr,
-  (* keep = "true" *)(* mark_debug = "true" *) output                         qspi0_ro_icb_cmd_read,
-  (* keep = "true" *)(* mark_debug = "true" *) output [`E203_XLEN-1:0]        qspi0_ro_icb_cmd_wdata,
+  output                         qspi0_ro_icb_cmd_valid,
+  input                          qspi0_ro_icb_cmd_ready,
+  output [`E203_ADDR_SIZE-1:0]   qspi0_ro_icb_cmd_addr,
+  output                         qspi0_ro_icb_cmd_read,
+  output [`E203_XLEN-1:0]        qspi0_ro_icb_cmd_wdata,
   //
-  (* keep = "true" *)(* mark_debug = "true" *) input                          qspi0_ro_icb_rsp_valid,
-  (* keep = "true" *)(* mark_debug = "true" *) output                         qspi0_ro_icb_rsp_ready,
-  (* keep = "true" *)(* mark_debug = "true" *) input                          qspi0_ro_icb_rsp_err,
-  (* keep = "true" *)(* mark_debug = "true" *) input  [`E203_XLEN-1:0]        qspi0_ro_icb_rsp_rdata,
+  input                          qspi0_ro_icb_rsp_valid,
+  output                         qspi0_ro_icb_rsp_ready,
+  input                          qspi0_ro_icb_rsp_err,
+  input  [`E203_XLEN-1:0]        qspi0_ro_icb_rsp_rdata,
 
 
     //////////////////////////////////////////////////////////

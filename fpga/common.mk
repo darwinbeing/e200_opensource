@@ -30,7 +30,7 @@ TB_FPGA_VSRCS += ${PWD}/model/W25Q32JV-M/W25Q32JVxxIM.v
 
 verilog := $(wildcard ${INSTALL_RTL}/*/*.v)
 verilog += $(wildcard ${INSTALL_RTL}/*.v)
-
+verilog += $(wildcard ${INSTALL_RTL}/*/*.vhd)
 
 # Build .mcs
 .PHONY: mcs

@@ -13,3 +13,9 @@ set_property include_dirs ${wrkdir}/../../install/rtl/core/ [current_fileset]
 set_property top $top [get_filesets sim_1]
 
 launch_simulation
+
+start_gui
+
+open_wave_config ${wrkdir}/../testbench/fpga_tb_top_behav.wcfg
+
+run 1ms

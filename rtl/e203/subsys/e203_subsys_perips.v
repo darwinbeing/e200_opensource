@@ -2534,59 +2534,78 @@ sirv_gpio_top u_sirv_gpio_top(
     .io_port_iof_1_31_o_valid        (gpio_iof_1_31_o_valid ) // (gpio_iof_1_31_o_valid)
 );
 
-  wire  [`E203_ADDR_SIZE-1:0] uart0_wb_adr;     // lower address bits
-  wire  [8-1:0] uart0_wb_dat_w;   // databus input
-  wire  [8-1:0] uart0_wb_dat_r;   // databus output
-  wire           uart0_wb_we;      // write enable input
-  wire           uart0_wb_stb;     // stobe/core select signal
-  wire           uart0_wb_cyc;     // valid bus cycle input
-  wire           uart0_wb_ack;     // bus cycle acknowledge output
-
   //  * UART0
-wb_uart_top u_wb_uart0_top (
+sirv_uart_top u_sirv_uart0_top (
     .clk           (clk  ),
     .rst_n         (rst_n),
 
-    .i_wb_addr (uart0_wb_adr[2:0]),
-    .i_wb_data (uart0_wb_dat_w[7:0]),
-    .o_wb_data (uart0_wb_dat_r[7:0]),
-    .i_wb_we   (uart0_wb_we),
-    .i_wb_stb  (uart0_wb_stb),
-    .i_wb_cyc  (uart0_wb_cyc),
-    .o_wb_ack  (uart0_wb_ack),
-
-    .o_uart_int (uart0_irq),
-    .o_uart_txd (uart0_txd),
-    .i_uart_rxd (uart0_rxd)
-);
-
-sirv_gnrl_icb32towishb8 # (
-  .AW   (`E203_ADDR_SIZE)
-) u_uart0_wb_icb32towishb8(
     .i_icb_cmd_valid (uart0_wb_icb_cmd_valid),
     .i_icb_cmd_ready (uart0_wb_icb_cmd_ready),
     .i_icb_cmd_addr  (uart0_wb_icb_cmd_addr ),
     .i_icb_cmd_read  (uart0_wb_icb_cmd_read ),
     .i_icb_cmd_wdata (uart0_wb_icb_cmd_wdata),
-    .i_icb_cmd_wmask (uart0_wb_icb_cmd_wmask),
-    .i_icb_cmd_size  (2'b0),
 
     .i_icb_rsp_valid (uart0_wb_icb_rsp_valid),
     .i_icb_rsp_ready (uart0_wb_icb_rsp_ready),
     .i_icb_rsp_rdata (uart0_wb_icb_rsp_rdata),
-    .i_icb_rsp_err   (uart0_wb_icb_rsp_err),
 
-    .wb_adr   (uart0_wb_adr),
-    .wb_dat_w (uart0_wb_dat_w[7:0]),
-    .wb_dat_r (uart0_wb_dat_r[7:0]),
-    .wb_we    (uart0_wb_we   ),
-    .wb_stb   (uart0_wb_stb  ),
-    .wb_cyc   (uart0_wb_cyc  ),
-    .wb_ack   (uart0_wb_ack  ),
+    .io_interrupts_0_0 (uart0_irq),
+    .io_port_txd       (uart0_txd),
+    .io_port_rxd       (uart0_rxd)
+);
 
-    .clk           (clk  ),
-    .rst_n         (bus_rst_n)
-  );
+//   wire  [`E203_ADDR_SIZE-1:0] uart0_wb_adr;     // lower address bits
+//   wire  [8-1:0] uart0_wb_dat_w;   // databus input
+//   wire  [8-1:0] uart0_wb_dat_r;   // databus output
+//   wire           uart0_wb_we;      // write enable input
+//   wire           uart0_wb_stb;     // stobe/core select signal
+//   wire           uart0_wb_cyc;     // valid bus cycle input
+//   wire           uart0_wb_ack;     // bus cycle acknowledge output
+
+// wb_uart_top u_wb_uart0_top (
+//     .clk           (clk  ),
+//     .rst_n         (rst_n),
+
+//     .i_wb_addr (uart0_wb_adr[2:0]),
+//     .i_wb_data (uart0_wb_dat_w[7:0]),
+//     .o_wb_data (uart0_wb_dat_r[7:0]),
+//     .i_wb_we   (uart0_wb_we),
+//     .i_wb_stb  (uart0_wb_stb),
+//     .i_wb_cyc  (uart0_wb_cyc),
+//     .o_wb_ack  (uart0_wb_ack),
+
+//     .o_uart_int (uart0_irq),
+//     .o_uart_txd (uart0_txd),
+//     .i_uart_rxd (uart0_rxd)
+// );
+
+// sirv_gnrl_icb32towishb8 # (
+//   .AW   (`E203_ADDR_SIZE)
+// ) u_uart0_wb_icb32towishb8(
+//     .i_icb_cmd_valid (uart0_wb_icb_cmd_valid),
+//     .i_icb_cmd_ready (uart0_wb_icb_cmd_ready),
+//     .i_icb_cmd_addr  (uart0_wb_icb_cmd_addr ),
+//     .i_icb_cmd_read  (uart0_wb_icb_cmd_read ),
+//     .i_icb_cmd_wdata (uart0_wb_icb_cmd_wdata),
+//     .i_icb_cmd_wmask (uart0_wb_icb_cmd_wmask),
+//     .i_icb_cmd_size  (2'b0),
+
+//     .i_icb_rsp_valid (uart0_wb_icb_rsp_valid),
+//     .i_icb_rsp_ready (uart0_wb_icb_rsp_ready),
+//     .i_icb_rsp_rdata (uart0_wb_icb_rsp_rdata),
+//     .i_icb_rsp_err   (uart0_wb_icb_rsp_err),
+
+//     .wb_adr   (uart0_wb_adr),
+//     .wb_dat_w (uart0_wb_dat_w[7:0]),
+//     .wb_dat_r (uart0_wb_dat_r[7:0]),
+//     .wb_we    (uart0_wb_we   ),
+//     .wb_stb   (uart0_wb_stb  ),
+//     .wb_cyc   (uart0_wb_cyc  ),
+//     .wb_ack   (uart0_wb_ack  ),
+
+//     .clk           (clk  ),
+//     .rst_n         (bus_rst_n)
+//   );
 
 
   //  * QSPI0
@@ -2658,64 +2677,83 @@ sirv_pwm8_top u_sirv_pwm0_top(
 );
 
   //  * UART1
-  wire [`E203_ADDR_SIZE-1:0] uart1_apb_paddr;
-  wire uart1_apb_pwrite;
-  wire uart1_apb_pselx;
-  wire uart1_apb_penable;
-  wire [`E203_XLEN-1:0] uart1_apb_pwdata;
-  wire [`E203_XLEN-1:0] uart1_apb_prdata;
+sirv_uart_top u_sirv_uart1_top (
+    .clk           (clk  ),
+    .rst_n         (rst_n),
 
-sirv_gnrl_icb2apb # (
-  .AW   (32),
-  .DW   (`E203_XLEN)
-) u_uart1_apb_icb2apb(
     .i_icb_cmd_valid (uart1_apb_icb_cmd_valid),
     .i_icb_cmd_ready (uart1_apb_icb_cmd_ready),
     .i_icb_cmd_addr  (uart1_apb_icb_cmd_addr ),
     .i_icb_cmd_read  (uart1_apb_icb_cmd_read ),
     .i_icb_cmd_wdata (uart1_apb_icb_cmd_wdata),
-    .i_icb_cmd_wmask (uart1_apb_icb_cmd_wmask),
-    .i_icb_cmd_size  (),
 
     .i_icb_rsp_valid (uart1_apb_icb_rsp_valid),
     .i_icb_rsp_ready (uart1_apb_icb_rsp_ready),
     .i_icb_rsp_rdata (uart1_apb_icb_rsp_rdata),
-    .i_icb_rsp_err   (uart1_apb_icb_rsp_err),
 
-    .apb_paddr     (uart1_apb_paddr  ),
-    .apb_pwrite    (uart1_apb_pwrite ),
-    .apb_pselx     (uart1_apb_pselx  ),
-    .apb_penable   (uart1_apb_penable),
-    .apb_pwdata    (uart1_apb_pwdata ),
-    .apb_prdata    (uart1_apb_prdata ),
+    .io_interrupts_0_0 (uart1_irq),
+    .io_port_txd       (uart1_txd),
+    .io_port_rxd       (uart1_rxd)
+);
 
-    .clk           (clk  ),
-    .rst_n         (bus_rst_n)
-  );
+//   wire [`E203_ADDR_SIZE-1:0] uart1_apb_paddr;
+//   wire uart1_apb_pwrite;
+//   wire uart1_apb_pselx;
+//   wire uart1_apb_penable;
+//   wire [`E203_XLEN-1:0] uart1_apb_pwdata;
+//   wire [`E203_XLEN-1:0] uart1_apb_prdata;
 
-   apb_uart u_apb_uart (
-                        .CLK     ( clk ),
-                        .RSTN    ( rst_n ),
-                        .PSEL    ( uart1_apb_pselx ),
-                        .PENABLE ( uart1_apb_penable ),
-                        .PWRITE  ( uart1_apb_pwrite ),
-                        .PADDR   ( uart1_apb_paddr ),
-                        .PWDATA  ( uart1_apb_pwdata ),
-                        .PRDATA  ( uart1_apb_prdata ),
-                        .PREADY  (),
-                        .PSLVERR (),
-                        .INT     ( uart1_irq ),
-                        .OUT1N   (), // keep open
-                        .OUT2N   (), // keep open
-                        .RTSN    (), // no flow control
-                        .DTRN    (), // no flow control
-                        .CTSN    ( 1'b0 ),
-                        .DSRN    ( 1'b0 ),
-                        .DCDN    ( 1'b0 ),
-                        .RIN     ( 1'b0 ),
-                        .SIN     ( uart1_rxd ),
-                        .SOUT    ( uart1_txd )
-                        );
+// sirv_gnrl_icb2apb # (
+//   .AW   (32),
+//   .DW   (`E203_XLEN)
+// ) u_uart1_apb_icb2apb(
+//     .i_icb_cmd_valid (uart1_apb_icb_cmd_valid),
+//     .i_icb_cmd_ready (uart1_apb_icb_cmd_ready),
+//     .i_icb_cmd_addr  (uart1_apb_icb_cmd_addr ),
+//     .i_icb_cmd_read  (uart1_apb_icb_cmd_read ),
+//     .i_icb_cmd_wdata (uart1_apb_icb_cmd_wdata),
+//     .i_icb_cmd_wmask (uart1_apb_icb_cmd_wmask),
+//     .i_icb_cmd_size  (),
+
+//     .i_icb_rsp_valid (uart1_apb_icb_rsp_valid),
+//     .i_icb_rsp_ready (uart1_apb_icb_rsp_ready),
+//     .i_icb_rsp_rdata (uart1_apb_icb_rsp_rdata),
+//     .i_icb_rsp_err   (uart1_apb_icb_rsp_err),
+
+//     .apb_paddr     (uart1_apb_paddr  ),
+//     .apb_pwrite    (uart1_apb_pwrite ),
+//     .apb_pselx     (uart1_apb_pselx  ),
+//     .apb_penable   (uart1_apb_penable),
+//     .apb_pwdata    (uart1_apb_pwdata ),
+//     .apb_prdata    (uart1_apb_prdata ),
+
+//     .clk           (clk  ),
+//     .rst_n         (bus_rst_n)
+//   );
+
+//    apb_uart u_apb_uart (
+//                         .CLK     ( clk ),
+//                         .RSTN    ( rst_n ),
+//                         .PSEL    ( uart1_apb_pselx ),
+//                         .PENABLE ( uart1_apb_penable ),
+//                         .PWRITE  ( uart1_apb_pwrite ),
+//                         .PADDR   ( uart1_apb_paddr ),
+//                         .PWDATA  ( uart1_apb_pwdata ),
+//                         .PRDATA  ( uart1_apb_prdata ),
+//                         .PREADY  (),
+//                         .PSLVERR (),
+//                         .INT     ( uart1_irq ),
+//                         .OUT1N   (), // keep open
+//                         .OUT2N   (), // keep open
+//                         .RTSN    (), // no flow control
+//                         .DTRN    (), // no flow control
+//                         .CTSN    ( 1'b0 ),
+//                         .DSRN    ( 1'b0 ),
+//                         .DCDN    ( 1'b0 ),
+//                         .RIN     ( 1'b0 ),
+//                         .SIN     ( uart1_rxd ),
+//                         .SOUT    ( uart1_txd )
+//                         );
 
   //  * QSPI1
 sirv_qspi_4cs_top u_sirv_qspi1_top(

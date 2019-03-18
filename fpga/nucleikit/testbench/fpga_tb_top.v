@@ -2,19 +2,19 @@
 
 module fpga_tb_top();
    reg CLK100MHZ;
-   reg CLK32768KHZ;
+   wire CLK32768KHZ;
    reg fpga_rst;
    reg mcu_rst;
    wire qspi_cs;
    wire qspi_sck;
-   wire qspi_dq;
+   wire [3:0]qspi_dq;
 
    initial begin
-      CLK100MHZ   <=0;
-      fpga_rst <=0;
-      mcu_rst <=0;
-      #15000 fpga_rst <=1;
-      mcu_rst <=1;
+      CLK100MHZ <= 0;
+      fpga_rst <= 0;
+      mcu_rst <= 0;
+      #15000 fpga_rst <= 1;
+      mcu_rst <= 1;
    end
 
    always
@@ -22,12 +22,31 @@ module fpga_tb_top();
         #5 CLK100MHZ <= ~CLK100MHZ;
      end
 
-   always
-     begin
-        // #15259 CLK32768KHZ <= ~CLK32768KHZ;
-        #20 CLK32768KHZ <= ~CLK32768KHZ;
-     end
+   // always
+   //   begin
+   //      // #15259 CLK32768KHZ <= ~CLK32768KHZ;
+   //      #20 CLK32768KHZ <= ~CLK32768KHZ;
+   //   end
 
+   wire clk_8388;
+   wire mmcm_locked;
+   wire resetn = fpga_rst & mcu_rst;
+
+   mmcm u_mmcm
+     (
+      .resetn(resetn),
+      .clk_in1(CLK100MHZ),
+      .clk_out1(clk_8388),
+      .locked(mmcm_locked)
+      );
+
+
+   clkdivider u_clkdivider
+     (
+      .clk(clk_8388),
+      .reset(~resetn),
+      .clk_out(CLK32768KHZ)
+      );
 
    system u_system
      (
@@ -53,6 +72,13 @@ module fpga_tb_top();
       .mcu_wakeup()
       );
 
-   // W25Q32JVxxIM u_w25q32jvm(CSn, CLK, DIO, DO, WPn, HOLDn, RESETn);
+   W25Q32JVxxIM u_w25q32jvm(
+                            .CSn(qspi_cs),
+                            .CLK(qspi_sck),
+                            .DIO(qspi_dq[0]),
+                            .DO(qspi_dq[1]),
+                            .WPn(qspi_dq[2]),
+                            .HOLDn(qspi_dq[3]),
+                            .RESETn(resetn));
 
 endmodule

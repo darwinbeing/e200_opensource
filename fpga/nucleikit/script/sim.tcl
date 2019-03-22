@@ -18,4 +18,4 @@ start_gui
 
 open_wave_config ${wrkdir}/../testbench/fpga_tb_top_behav.wcfg
 
-run 1ms
+run 10ms

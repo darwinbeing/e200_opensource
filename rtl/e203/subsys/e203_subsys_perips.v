@@ -1376,16 +1376,16 @@ module e203_subsys_perips(
   wire [32-1:0]            uart0_wb_icb_rsp_rdata;
   wire                     uart0_wb_icb_rsp_err;
 `elsif E203_CFG_UART0_APB
-  wire                     uart0_apb_icb_cmd_valid;
-  wire                     uart0_apb_icb_cmd_ready;
-  wire [32-1:0]            uart0_apb_icb_cmd_addr;
-  wire                     uart0_apb_icb_cmd_read;
-  wire [32-1:0]            uart0_apb_icb_cmd_wdata;
-  wire [4 -1:0]            uart0_apb_icb_cmd_wmask;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                     uart0_apb_icb_cmd_valid;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                     uart0_apb_icb_cmd_ready;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [32-1:0]            uart0_apb_icb_cmd_addr;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                     uart0_apb_icb_cmd_read;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [32-1:0]            uart0_apb_icb_cmd_wdata;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [4 -1:0]            uart0_apb_icb_cmd_wmask;
 
-  wire                     uart0_apb_icb_rsp_valid;
-  wire                     uart0_apb_icb_rsp_ready;
-  wire [32-1:0]            uart0_apb_icb_rsp_rdata;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                     uart0_apb_icb_rsp_valid;
+  (* keep = "true" *)(* mark_debug = "true" *) wire                     uart0_apb_icb_rsp_ready;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [32-1:0]            uart0_apb_icb_rsp_rdata;
   wire                     uart0_apb_icb_rsp_err;
 `else
   wire                     uart0_icb_cmd_valid;
@@ -2714,14 +2714,14 @@ sirv_gnrl_icb32towishb8 # (
     .rst_n         (bus_rst_n)
   );
 `elsif E203_CFG_UART0_APB
-  wire [`E203_ADDR_SIZE-1:0] uart0_apb_paddr;
-  wire uart0_apb_pwrite;
-  wire uart0_apb_pselx;
-  wire uart0_apb_penable;
-  wire [`E203_XLEN-1:0] uart0_apb_pwdata;
-  wire [`E203_XLEN-1:0] uart0_apb_prdata;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [`E203_ADDR_SIZE-1:0] uart0_apb_paddr;
+  (* keep = "true" *)(* mark_debug = "true" *) wire uart0_apb_pwrite;
+  (* keep = "true" *)(* mark_debug = "true" *) wire uart0_apb_pselx;
+  (* keep = "true" *)(* mark_debug = "true" *) wire uart0_apb_penable;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [`E203_XLEN-1:0] uart0_apb_pwdata;
+  (* keep = "true" *)(* mark_debug = "true" *) wire [`E203_XLEN-1:0] uart0_apb_prdata;
 
-sirv_gnrl_icb2apb # (
+sirv_gnrl_icb2apb8 # (
   .AW   (32),
   .DW   (`E203_XLEN)
 ) u_uart0_apb_icb2apb(
@@ -2742,8 +2742,8 @@ sirv_gnrl_icb2apb # (
     .apb_pwrite    (uart0_apb_pwrite ),
     .apb_pselx     (uart0_apb_pselx  ),
     .apb_penable   (uart0_apb_penable),
-    .apb_pwdata    (uart0_apb_pwdata ),
-    .apb_prdata    (uart0_apb_prdata ),
+    .apb_pwdata    (uart0_apb_pwdata[7:0]),
+    .apb_prdata    (uart0_apb_prdata[7:0]),
 
     .clk           (clk  ),
     .rst_n         (bus_rst_n)
@@ -2923,7 +2923,7 @@ sirv_gnrl_icb32towishb8 # (
   wire [`E203_XLEN-1:0] uart1_apb_pwdata;
   wire [`E203_XLEN-1:0] uart1_apb_prdata;
 
-sirv_gnrl_icb2apb # (
+sirv_gnrl_icb2apb8 # (
   .AW   (32),
   .DW   (`E203_XLEN)
 ) u_uart1_apb_icb2apb(

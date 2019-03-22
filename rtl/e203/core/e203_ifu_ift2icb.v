@@ -86,18 +86,18 @@ module e203_ifu_ift2icb(
   //////////////////////////////////////////////////////////////
   // Bus Interface to System Memory, internal protocol called ICB (Internal Chip Bus)
   //    * Bus cmd channel
-  (* keep = "true" *)(* mark_debug = "true" *) output ifu2biu_icb_cmd_valid, // Handshake valid
-  (* keep = "true" *)(* mark_debug = "true" *) input  ifu2biu_icb_cmd_ready, // Handshake ready
+  output ifu2biu_icb_cmd_valid, // Handshake valid
+  input  ifu2biu_icb_cmd_ready, // Handshake ready
             // Note: The data on rdata or wdata channel must be naturally
             //       aligned, this is in line with the AXI definition
-  (* keep = "true" *)(* mark_debug = "true" *) output [`E203_ADDR_SIZE-1:0]   ifu2biu_icb_cmd_addr, // Bus transaction start addr
+  output [`E203_ADDR_SIZE-1:0]   ifu2biu_icb_cmd_addr, // Bus transaction start addr
 
   //    * Bus RSP channel
-  (* keep = "true" *)(* mark_debug = "true" *) input  ifu2biu_icb_rsp_valid, // Response valid
-  (* keep = "true" *)(* mark_debug = "true" *) output ifu2biu_icb_rsp_ready, // Response ready
-  (* keep = "true" *)(* mark_debug = "true" *) input  ifu2biu_icb_rsp_err,   // Response error
+  input  ifu2biu_icb_rsp_valid, // Response valid
+  output ifu2biu_icb_rsp_ready, // Response ready
+  input  ifu2biu_icb_rsp_err,   // Response error
             // Note: the RSP rdata is inline with AXI definition
-  (* keep = "true" *)(* mark_debug = "true" *) input  [`E203_SYSMEM_DATA_WIDTH-1:0] ifu2biu_icb_rsp_rdata,
+  input  [`E203_SYSMEM_DATA_WIDTH-1:0] ifu2biu_icb_rsp_rdata,
 
   //input  ifu2biu_replay,
   `endif//}

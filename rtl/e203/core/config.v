@@ -99,7 +99,7 @@
 `define E203_CFG_SUPPORT_AMO
 `define E203_CFG_DTCM_ADDR_WIDTH 16
 
-// `define E203_CFG_UART0_WB
-`define E203_CFG_UART0_APB
+`define E203_CFG_UART0_WB
+// `define E203_CFG_UART0_APB
 // `define E203_CFG_UART1_WB
 // `define E203_CFG_UART1_APB

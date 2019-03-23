@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="9226233500000fs"></ZoomStartTime>
-      <ZoomEndTime time="9227367500001fs"></ZoomEndTime>
-      <Cursor1Time time="9226422500000fs"></Cursor1Time>
+      <ZoomStartTime time="9156631000000fs"></ZoomStartTime>
+      <ZoomEndTime time="9195711000001fs"></ZoomEndTime>
+      <Cursor1Time time="9172611000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="216"></NameColumnWidth>
+      <NameColumnWidth column_width="208"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="46" />
+   <WVObjectSize size="47" />
    <wvobject type="logic" fp_name="/fpga_tb_top/u_system/clk_16M">
       <obj_property name="ElementShortName">clk_16M</obj_property>
       <obj_property name="ObjectShortName">clk_16M</obj_property>
@@ -124,69 +124,73 @@
       <obj_property name="ElementShortName">ifu2biu_icb_rsp_rdata[31:0]</obj_property>
       <obj_property name="ObjectShortName">ifu2biu_icb_rsp_rdata[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_cmd_valid">
-      <obj_property name="ElementShortName">uart0_apb_icb_cmd_valid</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_cmd_valid</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_cmd_valid">
+      <obj_property name="ElementShortName">uart0_wb_icb_cmd_valid</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_cmd_valid</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_cmd_ready">
-      <obj_property name="ElementShortName">uart0_apb_icb_cmd_ready</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_cmd_ready</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_cmd_ready">
+      <obj_property name="ElementShortName">uart0_wb_icb_cmd_ready</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_cmd_ready</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_cmd_addr">
-      <obj_property name="ElementShortName">uart0_apb_icb_cmd_addr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_cmd_addr[31:0]</obj_property>
+   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_cmd_addr">
+      <obj_property name="ElementShortName">uart0_wb_icb_cmd_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_cmd_addr[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_cmd_read">
-      <obj_property name="ElementShortName">uart0_apb_icb_cmd_read</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_cmd_read</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_cmd_read">
+      <obj_property name="ElementShortName">uart0_wb_icb_cmd_read</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_cmd_read</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_cmd_wdata">
-      <obj_property name="ElementShortName">uart0_apb_icb_cmd_wdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_cmd_wdata[31:0]</obj_property>
+   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_cmd_wdata">
+      <obj_property name="ElementShortName">uart0_wb_icb_cmd_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_cmd_wdata[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_cmd_wmask">
-      <obj_property name="ElementShortName">uart0_apb_icb_cmd_wmask[3:0]</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_cmd_wmask[3:0]</obj_property>
+   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_cmd_wmask">
+      <obj_property name="ElementShortName">uart0_wb_icb_cmd_wmask[3:0]</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_cmd_wmask[3:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_rsp_valid">
-      <obj_property name="ElementShortName">uart0_apb_icb_rsp_valid</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_rsp_valid</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_rsp_valid">
+      <obj_property name="ElementShortName">uart0_wb_icb_rsp_valid</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_rsp_valid</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_rsp_ready">
-      <obj_property name="ElementShortName">uart0_apb_icb_rsp_ready</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_rsp_ready</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_rsp_ready">
+      <obj_property name="ElementShortName">uart0_wb_icb_rsp_ready</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_rsp_ready</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_rsp_rdata">
-      <obj_property name="ElementShortName">uart0_apb_icb_rsp_rdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_rsp_rdata[31:0]</obj_property>
+   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_rsp_rdata">
+      <obj_property name="ElementShortName">uart0_wb_icb_rsp_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_rsp_rdata[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_icb_rsp_err">
-      <obj_property name="ElementShortName">uart0_apb_icb_rsp_err</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_icb_rsp_err</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_icb_rsp_err">
+      <obj_property name="ElementShortName">uart0_wb_icb_rsp_err</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_icb_rsp_err</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_paddr">
-      <obj_property name="ElementShortName">uart0_apb_paddr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_paddr[31:0]</obj_property>
+   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_adr">
+      <obj_property name="ElementShortName">uart0_wb_adr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_adr[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_pwrite">
-      <obj_property name="ElementShortName">uart0_apb_pwrite</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_pwrite</obj_property>
+   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_dat_w">
+      <obj_property name="ElementShortName">uart0_wb_dat_w[7:0]</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_dat_w[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_pselx">
-      <obj_property name="ElementShortName">uart0_apb_pselx</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_pselx</obj_property>
+   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_dat_r">
+      <obj_property name="ElementShortName">uart0_wb_dat_r[7:0]</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_dat_r[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_penable">
-      <obj_property name="ElementShortName">uart0_apb_penable</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_penable</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_we">
+      <obj_property name="ElementShortName">uart0_wb_we</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_we</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_pwdata">
-      <obj_property name="ElementShortName">uart0_apb_pwdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_pwdata[31:0]</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_stb">
+      <obj_property name="ElementShortName">uart0_wb_stb</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_stb</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_apb_prdata">
-      <obj_property name="ElementShortName">uart0_apb_prdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">uart0_apb_prdata[31:0]</obj_property>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_cyc">
+      <obj_property name="ElementShortName">uart0_wb_cyc</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_cyc</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_subsys_perips/uart0_wb_ack">
+      <obj_property name="ElementShortName">uart0_wb_ack</obj_property>
+      <obj_property name="ObjectShortName">uart0_wb_ack</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/fpga_tb_top/u_system/dut/u_e203_subsys_top/u_e203_subsys_main/u_e203_cpu_top/u_e203_cpu/u_e203_core/u_e203_exu/u_e203_exu_regfile/rf_r[13]">
       <obj_property name="ElementShortName">[13][31:0]</obj_property>

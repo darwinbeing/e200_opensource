@@ -373,13 +373,13 @@ architecture rtl of uart_16750 is
     signal iTHRInterrupt    : std_logic;                        -- Transmitter holding register empty interrupt
     signal iTXEnable        : std_logic;                        -- Transmitter enable signal
     signal iRTS             : std_logic;                        -- Internal RTS signal with/without automatic flow control
-	
+
     signal WB_ACK_R         : std_logic;
 
 
 begin
 
-	
+
     iWrite  <= '1' when WB_CYC = '1' and WB_STB = '1' and WB_WE = '1' and WB_ACK_r='1' else '0';
     iRead  <= '1' when WB_CYC = '1' and WB_STB = '1' and WB_WE = '0' and WB_ACK_r='1' else '0';
 
@@ -412,22 +412,18 @@ begin
 
 
     -- Global device signals
-	iA(2 downto 0) <= WB_ADR(2 downto 0);
+        iA(2 downto 0) <= WB_ADR(2 downto 0);
     iDIN <= WB_DIN;
 
---    WB_ACK <= WB_CYC and WB_STB after 1 ns;	
-    WB_ACK <= WB_ACK_r;	
+--    WB_ACK <= WB_CYC and WB_STB after 1 ns;
+    WB_ACK <= WB_ACK_r;
 
-	WB_ACK_PR: process (CLK, RST)
+        WB_ACK_PR: process (CLK, RST)
     begin
         if (RST = '1') then
-            WB_ACK_r <= '1';
+            WB_ACK_r <= '0';
         elsif (CLK'event and CLK = '1') then
-            if (WB_ACK_r = '1') then
-                WB_ACK_r <= '0';
-			elsif (WB_CYC='1' and WB_STB='1') then
-                WB_ACK_r <= '1';
-            end if;
+            WB_ACK_r <= WB_CYC and WB_STB and (not WB_ACK_r);
         end if;
     end process;
 
@@ -1027,8 +1023,8 @@ begin
     -- UART data output
     UART_DOUT: process (WB_ACK_r,iA, iLCR_DLAB, iRBR, iDLL, iDLM, iIER, iIIR, iLCR, iMCR, iLSR, iMSR, iSCR)
     begin
-	WB_DOUT(7 downto 0) <= (others => '0');
-		if WB_ACK_r='1' then
+        WB_DOUT(7 downto 0) <= (others => '0');
+                if WB_ACK_r='1' then
         case iA is
             when "000"  =>  if (iLCR_DLAB = '0') then
                                 WB_DOUT <= iRBR;
@@ -1047,10 +1043,8 @@ begin
             when "110"  =>  WB_DOUT <= iMSR;
             when "111"  =>  WB_DOUT <= iSCR;
             when others =>  WB_DOUT <= iRBR;
-        end case;			
-		end if;
+        end case;
+                end if;
     end process;
 
 end rtl;
-
-

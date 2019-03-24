@@ -1,0 +1,10 @@
+-timescale 1ns/10ps
+
++define+DISABLE_SV_ASSERTION
+
+../../install/rtl/general/sirv_gnrl_icbs.v
+../../install/rtl/general/sirv_gnrl_bufs.v
+../../install/rtl/general/sirv_gnrl_dffs.v
+../../install/rtl/general/sirv_gnrl_xchecker.v
+hdl/tb_pkg.sv
+hdl/tb.sv

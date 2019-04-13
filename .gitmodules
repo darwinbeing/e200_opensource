@@ -1,0 +1,3 @@
+[submodule "hbird-e-sdk"]
+	path = hbird-e-sdk
+	url = https://github.com/darwinbeing/hbird-e-sdk.git
